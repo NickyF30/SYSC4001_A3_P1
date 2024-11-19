@@ -440,7 +440,7 @@ std::tuple<std::string, std::string> run_simulation(std::vector<PCB> list_proces
             }
         }
 
-        if(running.PID != -1 && current_time == (running.start_time + running.io_freq)) {
+        if(running.PID != -1 && current_time == (running.start_time + running.io_freq) && running.remaining_time > 0) {
             running.remaining_time = running.remaining_time - running.io_freq;
             running.state = WAITING;
             set_queue(job_queue, running);
@@ -496,14 +496,10 @@ std::tuple<std::string, std::string> run_simulation(std::vector<PCB> list_proces
         }
 
         current_time++;
-        std::cout << execution_status << std::endl;
     }
 
     memory_status += get_memory_footer();
     execution_status += get_exec_footer();
-
-    std::cout << execution_status << std::endl;
-    std::cout << memory_status << std::endl;
 
     return std::make_tuple(execution_status, memory_status);
 }

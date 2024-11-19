@@ -29,5 +29,8 @@ int main(int argc, char** argv) {
 
     auto [exec, mem] = run_simulation(list_process, lcg);
 
+    std::cout << exec << std::endl;
+    std::cout << mem << std::endl;
+
     return 0;
 }
