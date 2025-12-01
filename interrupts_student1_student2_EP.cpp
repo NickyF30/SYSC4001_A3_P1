@@ -86,9 +86,10 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
             EP_Scheduler(ready_queue); //priority
             running_process = ready_queue.front();
             ready_queue.erase(ready_queue.begin());
-
             running_process.state = RUNNING;
-
+            if (running_process.start_time == -1) {
+                running_process.start_time = current_time;
+            }
             // sync
             for(auto &p : all_processes) if(p.PID == running_process.PID) p = running_process;
 
@@ -103,7 +104,7 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
             if (running_process.remaining_time == 0) {
                 running_process.state = TERMINATED;
                 free_memory(running_process);
-
+                running_process.finish_time = current_time + 1;
                 // Sync
                 for(auto &p : all_processes) if(p.PID == running_process.PID) p = running_process;
 
