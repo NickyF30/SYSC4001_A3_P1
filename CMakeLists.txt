@@ -7,7 +7,7 @@ include_directories(.)
 
 add_executable(Assignment_3
         build.sh
-        interrupts_student1_student2.hpp
-        interrupts_student1_student2_EP.cpp
-        interrupts_student1_student2_EP_RR.cpp
-        interrupts_student1_student2_RR.cpp)
+        interrupts_101304731_101296691.hpp
+        interrupts_101304731_101296691_EP.cpp
+        interrupts_101304731_101296691_EP_RR.cpp
+        interrupts_101304731_101296691_RR.cpp)

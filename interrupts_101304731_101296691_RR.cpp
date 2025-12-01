@@ -5,22 +5,12 @@
  * 
  */
 
-#include<interrupts_student1_student2.hpp>
+#include<interrupts_101304731_101296691.hpp>
 
 const unsigned int TIME_QUANTUM = 100;
 
-void EP_RR_Scheduler(std::vector<PCB> &ready_queue) {
-    std::sort(
-        ready_queue.begin(),
-        ready_queue.end(),
-        [](const PCB &a, const PCB &b) {
-            // Primary
-            if (a.priority != b.priority)
-                return a.priority < b.priority;
-            // Secondary
-            return a.arrival_time < b.arrival_time;
-        }
-    );
+void RR_Scheduler(std::vector<PCB> &ready_queue) {
+    // queue because fifo
 }
 
 std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
@@ -38,8 +28,6 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
 
     while (!all_process_terminated(all_processes)) {
 
-        bool preemption_occurred = false;
-
         for (auto &p : all_processes) {
             if (p.state == NEW && p.arrival_time == current_time) {
                 if (assign_memory(p)) {
@@ -47,20 +35,6 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
                     ready_queue.push_back(p);
                     execution_log += print_exec_status(current_time, p.PID, NEW, READY);
                     execution_log += print_memory_usage();
-
-                    if (running_process.PID != -1 && p.priority < running_process.priority) {
-                        running_process.state = READY;
-
-                        for(auto &proc : all_processes) {
-                            if(proc.PID == running_process.PID) proc = running_process;
-                        }
-
-                        ready_queue.push_back(running_process);
-                        execution_log += print_exec_status(current_time, running_process.PID, RUNNING, READY);
-
-                        idle_CPU(running_process);
-                        preemption_occurred = true;
-                    }
                 }
             }
             else if (p.state == NEW && p.arrival_time < current_time) {
@@ -69,25 +43,9 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
                     ready_queue.push_back(p);
                     execution_log += print_exec_status(current_time, p.PID, NEW, READY);
                     execution_log += print_memory_usage();
-
-                    // Check for preemption
-                    if (running_process.PID != -1 && p.priority < running_process.priority) {
-                        running_process.state = READY;
-
-                        for(auto &proc : all_processes) {
-                            if(proc.PID == running_process.PID) proc = running_process;
-                        }
-
-                        ready_queue.push_back(running_process);
-                        execution_log += print_exec_status(current_time, running_process.PID, RUNNING, READY);
-
-                        idle_CPU(running_process);
-                        preemption_occurred = true;
-                    }
                 }
             }
         }
-
         auto it = wait_queue.begin();
         while (it != wait_queue.end()) {
             if (it->io_completion_time == current_time) {
@@ -100,31 +58,12 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
 
                 ready_queue.push_back(*it);
                 execution_log += print_exec_status(current_time, it->PID, WAITING, READY);
-
-                if (running_process.PID != -1 && it->priority < running_process.priority) {
-                    running_process.state = READY;
-
-                    for(auto &proc : all_processes) {
-                        if(proc.PID == running_process.PID) proc = running_process;
-                    }
-
-                    ready_queue.push_back(running_process);
-                    execution_log += print_exec_status(current_time, running_process.PID, RUNNING, READY);
-
-                    idle_CPU(running_process);
-                    preemption_occurred = true;
-                }
-
                 it = wait_queue.erase(it);
             } else {
                 ++it;
             }
         }
-
         if (running_process.PID == -1 && !ready_queue.empty()) {
-            // Sort by priority
-            EP_RR_Scheduler(ready_queue);
-
             running_process = ready_queue.front();
             ready_queue.erase(ready_queue.begin());
 
@@ -137,14 +76,12 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
 
             execution_log += print_exec_status(current_time, running_process.PID, READY, RUNNING);
         }
-
-        if (running_process.PID != -1 && !preemption_occurred) {
+        if (running_process.PID != -1) {
             running_process.remaining_time--;
             quantum_remaining--;
             if(running_process.io_freq > 0) {
                 running_process.time_until_io--;
             }
-
             if (running_process.remaining_time == 0) {
                 running_process.state = TERMINATED;
                 free_memory(running_process);
@@ -158,7 +95,7 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
 
                 idle_CPU(running_process);
             }
-
+            // io
             else if (running_process.io_freq > 0 && running_process.time_until_io == 0) {
                 running_process.state = WAITING;
                 running_process.io_completion_time = current_time + 1 + running_process.io_duration;
@@ -172,17 +109,14 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
 
                 idle_CPU(running_process);
             }
-
+            //expiry
             else if (quantum_remaining == 0) {
                 running_process.state = READY;
-
                 for(auto &p : all_processes) {
                     if(p.PID == running_process.PID) p = running_process;
                 }
-
                 ready_queue.push_back(running_process);
                 execution_log += print_exec_status(current_time + 1, running_process.PID, RUNNING, READY);
-
                 idle_CPU(running_process);
             }
         }
@@ -191,6 +125,7 @@ std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
     execution_log += print_exec_footer();
     return std::make_tuple(execution_log);
 }
+
 
 
 int main(int argc, char** argv) {
