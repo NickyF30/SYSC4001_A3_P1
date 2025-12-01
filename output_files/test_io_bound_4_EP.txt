@@ -1,0 +1,144 @@
++------------------------------------------------------------+
+| Time of Transition |  PID  |   Old State  |   New State  |
++------------------------------------------------------------+
+|                 2 |    20 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Used(PID20) P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 85 MB
+|                 2 |    20 |        READY |      RUNNING |
+|                 4 |    26 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Used(PID20) P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Free | Total Usable Free: 75 MB
+|                11 |    21 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Used(PID21) P3(15MB):Used(PID20) P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Free | Total Usable Free: 50 MB
+|                11 |    24 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Used(PID21) P3(15MB):Used(PID20) P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Used(PID24) | Total Usable Free: 48 MB
+|                12 |    22 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID22) P2(25MB):Used(PID21) P3(15MB):Used(PID20) P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Used(PID24) | Total Usable Free: 8 MB
+|                13 |    25 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID22) P2(25MB):Used(PID21) P3(15MB):Used(PID20) P4(10MB):Used(PID26) P5(8MB):Used(PID25) P6(2MB):Used(PID24) | Total Usable Free: 0 MB
+|                33 |    20 |      RUNNING |      WAITING |
+|                33 |    21 |        READY |      RUNNING |
+|                59 |    21 |      RUNNING |      WAITING |
+|                59 |    20 |      WAITING |        READY |
+|                59 |    20 |        READY |      RUNNING |
+|                89 |    21 |      WAITING |        READY |
+|                90 |    20 |      RUNNING |      WAITING |
+|                90 |    21 |        READY |      RUNNING |
+|               116 |    21 |      RUNNING |      WAITING |
+|               116 |    20 |      WAITING |        READY |
+|               116 |    20 |        READY |      RUNNING |
+|               146 |    21 |      WAITING |        READY |
+|               147 |    20 |      RUNNING |      WAITING |
+|               147 |    21 |        READY |      RUNNING |
+|               173 |    21 |      RUNNING |      WAITING |
+|               173 |    20 |      WAITING |        READY |
+|               173 |    20 |        READY |      RUNNING |
+|               203 |    21 |      WAITING |        READY |
+|               204 |    20 |      RUNNING |      WAITING |
+|               204 |    21 |        READY |      RUNNING |
+|               230 |    21 |      RUNNING |      WAITING |
+|               230 |    20 |      WAITING |        READY |
+|               230 |    20 |        READY |      RUNNING |
+|               238 |    20 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID22) P2(25MB):Used(PID21) P3(15MB):Free P4(10MB):Used(PID26) P5(8MB):Used(PID25) P6(2MB):Used(PID24) | Total Usable Free: 15 MB
+|               238 |    23 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID22) P2(25MB):Used(PID21) P3(15MB):Used(PID23) P4(10MB):Used(PID26) P5(8MB):Used(PID25) P6(2MB):Used(PID24) | Total Usable Free: 0 MB
+|               238 |    22 |        READY |      RUNNING |
+|               260 |    21 |      WAITING |        READY |
+|               272 |    22 |      RUNNING |      WAITING |
+|               272 |    21 |        READY |      RUNNING |
+|               294 |    22 |      WAITING |        READY |
+|               298 |    21 |      RUNNING |      WAITING |
+|               298 |    22 |        READY |      RUNNING |
+|               328 |    21 |      WAITING |        READY |
+|               332 |    22 |      RUNNING |      WAITING |
+|               332 |    21 |        READY |      RUNNING |
+|               354 |    22 |      WAITING |        READY |
+|               358 |    21 |      RUNNING |      WAITING |
+|               358 |    22 |        READY |      RUNNING |
+|               388 |    21 |      WAITING |        READY |
+|               392 |    22 |      RUNNING |      WAITING |
+|               392 |    21 |        READY |      RUNNING |
+|               414 |    22 |      WAITING |        READY |
+|               416 |    21 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID22) P2(25MB):Free P3(15MB):Used(PID23) P4(10MB):Used(PID26) P5(8MB):Used(PID25) P6(2MB):Used(PID24) | Total Usable Free: 25 MB
+|               416 |    22 |        READY |      RUNNING |
+|               433 |    22 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Used(PID23) P4(10MB):Used(PID26) P5(8MB):Used(PID25) P6(2MB):Used(PID24) | Total Usable Free: 65 MB
+|               433 |    23 |        READY |      RUNNING |
+|               461 |    23 |      RUNNING |      WAITING |
+|               461 |    24 |        READY |      RUNNING |
+|               473 |    24 |      RUNNING |      WAITING |
+|               473 |    25 |        READY |      RUNNING |
+|               482 |    23 |      WAITING |        READY |
+|               497 |    24 |      WAITING |        READY |
+|               502 |    25 |      RUNNING |      WAITING |
+|               502 |    23 |        READY |      RUNNING |
+|               512 |    25 |      WAITING |        READY |
+|               530 |    23 |      RUNNING |      WAITING |
+|               530 |    24 |        READY |      RUNNING |
+|               542 |    24 |      RUNNING |      WAITING |
+|               542 |    25 |        READY |      RUNNING |
+|               551 |    23 |      WAITING |        READY |
+|               566 |    24 |      WAITING |        READY |
+|               571 |    25 |      RUNNING |      WAITING |
+|               571 |    23 |        READY |      RUNNING |
+|               581 |    25 |      WAITING |        READY |
+|               599 |    23 |      RUNNING |      WAITING |
+|               599 |    24 |        READY |      RUNNING |
+|               611 |    24 |      RUNNING |      WAITING |
+|               611 |    25 |        READY |      RUNNING |
+|               620 |    23 |      WAITING |        READY |
+|               635 |    24 |      WAITING |        READY |
+|               640 |    25 |      RUNNING |      WAITING |
+|               640 |    23 |        READY |      RUNNING |
+|               650 |    25 |      WAITING |        READY |
+|               668 |    23 |      RUNNING |      WAITING |
+|               668 |    24 |        READY |      RUNNING |
+|               680 |    24 |      RUNNING |      WAITING |
+|               680 |    25 |        READY |      RUNNING |
+|               689 |    23 |      WAITING |        READY |
+|               704 |    24 |      WAITING |        READY |
+|               709 |    25 |      RUNNING |      WAITING |
+|               709 |    23 |        READY |      RUNNING |
+|               719 |    25 |      WAITING |        READY |
+|               737 |    23 |      RUNNING |      WAITING |
+|               737 |    24 |        READY |      RUNNING |
+|               749 |    24 |      RUNNING |      WAITING |
+|               749 |    25 |        READY |      RUNNING |
+|               755 |    25 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Used(PID23) P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Used(PID24) | Total Usable Free: 73 MB
+|               755 |    26 |        READY |      RUNNING |
+|               758 |    23 |      WAITING |        READY |
+|               773 |    24 |      WAITING |        READY |
+|               778 |    26 |      RUNNING |      WAITING |
+|               778 |    23 |        READY |      RUNNING |
+|               804 |    26 |      WAITING |        READY |
+|               806 |    23 |      RUNNING |      WAITING |
+|               806 |    24 |        READY |      RUNNING |
+|               818 |    24 |      RUNNING |      WAITING |
+|               818 |    26 |        READY |      RUNNING |
+|               827 |    23 |      WAITING |        READY |
+|               841 |    26 |      RUNNING |      WAITING |
+|               841 |    23 |        READY |      RUNNING |
+|               842 |    24 |      WAITING |        READY |
+|               845 |    23 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Used(PID24) | Total Usable Free: 88 MB
+|               845 |    24 |        READY |      RUNNING |
+|               854 |    24 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Used(PID26) P5(8MB):Free P6(2MB):Free | Total Usable Free: 90 MB
+|               867 |    26 |      WAITING |        READY |
+|               867 |    26 |        READY |      RUNNING |
+|               890 |    26 |      RUNNING |      WAITING |
+|               916 |    26 |      WAITING |        READY |
+|               916 |    26 |        READY |      RUNNING |
+|               939 |    26 |      RUNNING |      WAITING |
+|               965 |    26 |      WAITING |        READY |
+|               965 |    26 |        READY |      RUNNING |
+|               988 |    26 |      RUNNING |      WAITING |
+|              1014 |    26 |      WAITING |        READY |
+|              1014 |    26 |        READY |      RUNNING |
+|              1037 |    26 |      RUNNING |      WAITING |
+|              1063 |    26 |      WAITING |        READY |
+|              1063 |    26 |        READY |      RUNNING |
+|              1069 |    26 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 100 MB
++-----------------------------------------------------------+

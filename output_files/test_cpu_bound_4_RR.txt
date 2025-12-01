@@ -1,0 +1,76 @@
++------------------------------------------------------------+
+| Time of Transition |  PID  |   Old State  |   New State  |
++------------------------------------------------------------+
+|                 4 |    14 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Used(PID14) P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 85 MB
+|                 4 |    15 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Used(PID15) P3(15MB):Used(PID14) P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 60 MB
+|                 4 |    14 |        READY |      RUNNING |
+|                19 |    12 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Used(PID15) P3(15MB):Used(PID14) P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 20 MB
+|                24 |    10 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Used(PID15) P3(15MB):Used(PID14) P4(10MB):Used(PID10) P5(8MB):Free P6(2MB):Free | Total Usable Free: 10 MB
+|               104 |    14 |      RUNNING |        READY |
+|               104 |    15 |        READY |      RUNNING |
+|               204 |    15 |      RUNNING |        READY |
+|               204 |    12 |        READY |      RUNNING |
+|               304 |    12 |      RUNNING |        READY |
+|               304 |    10 |        READY |      RUNNING |
+|               404 |    10 |      RUNNING |        READY |
+|               404 |    14 |        READY |      RUNNING |
+|               504 |    14 |      RUNNING |        READY |
+|               504 |    15 |        READY |      RUNNING |
+|               537 |    15 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Free P3(15MB):Used(PID14) P4(10MB):Used(PID10) P5(8MB):Free P6(2MB):Free | Total Usable Free: 35 MB
+|               537 |    13 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Used(PID13) P3(15MB):Used(PID14) P4(10MB):Used(PID10) P5(8MB):Free P6(2MB):Free | Total Usable Free: 10 MB
+|               537 |    12 |        READY |      RUNNING |
+|               637 |    12 |      RUNNING |        READY |
+|               637 |    10 |        READY |      RUNNING |
+|               710 |    10 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Used(PID13) P3(15MB):Used(PID14) P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 20 MB
+|               710 |    14 |        READY |      RUNNING |
+|               810 |    14 |      RUNNING |        READY |
+|               810 |    13 |        READY |      RUNNING |
+|               910 |    13 |      RUNNING |        READY |
+|               910 |    12 |        READY |      RUNNING |
+|              1010 |    12 |      RUNNING |        READY |
+|              1010 |    14 |        READY |      RUNNING |
+|              1063 |    14 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Used(PID13) P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 35 MB
+|              1063 |    13 |        READY |      RUNNING |
+|              1163 |    13 |      RUNNING |        READY |
+|              1163 |    12 |        READY |      RUNNING |
+|              1181 |    12 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Used(PID13) P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 75 MB
+|              1181 |    11 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID11) P2(25MB):Used(PID13) P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 35 MB
+|              1181 |    13 |        READY |      RUNNING |
+|              1213 |    13 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID11) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 60 MB
+|              1213 |    11 |        READY |      RUNNING |
+|              1313 |    11 |      RUNNING |        READY |
+|              1313 |    11 |        READY |      RUNNING |
+|              1413 |    11 |      RUNNING |        READY |
+|              1413 |    11 |        READY |      RUNNING |
+|              1513 |    11 |      RUNNING |        READY |
+|              1513 |    11 |        READY |      RUNNING |
+|              1523 |    11 |      RUNNING |      WAITING |
+|              1538 |    11 |      WAITING |        READY |
+|              1538 |    11 |        READY |      RUNNING |
+|              1638 |    11 |      RUNNING |        READY |
+|              1638 |    11 |        READY |      RUNNING |
+|              1677 |    11 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 100 MB
+|              1677 |    16 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID16) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 60 MB
+|              1677 |    16 |        READY |      RUNNING |
+|              1777 |    16 |      RUNNING |        READY |
+|              1777 |    16 |        READY |      RUNNING |
+|              1877 |    16 |      RUNNING |        READY |
+|              1877 |    16 |        READY |      RUNNING |
+|              1977 |    16 |      RUNNING |        READY |
+|              1977 |    16 |        READY |      RUNNING |
+|              2013 |    16 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 100 MB
++-----------------------------------------------------------+

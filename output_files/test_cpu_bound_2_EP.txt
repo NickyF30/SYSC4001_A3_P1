@@ -1,0 +1,24 @@
++------------------------------------------------------------+
+| Time of Transition |  PID  |   Old State  |   New State  |
++------------------------------------------------------------+
+|                 1 |    12 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 60 MB
+|                 1 |    12 |        READY |      RUNNING |
+|                35 |    11 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Used(PID11) P6(2MB):Free | Total Usable Free: 52 MB
+|                45 |    10 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID12) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Used(PID11) P6(2MB):Used(PID10) | Total Usable Free: 50 MB
+|               201 |    12 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Used(PID11) P6(2MB):Used(PID10) | Total Usable Free: 90 MB
+|               201 |    13 |          NEW |        READY |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID13) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Used(PID11) P6(2MB):Used(PID10) | Total Usable Free: 50 MB
+|               201 |    10 |        READY |      RUNNING |
+|               541 |    10 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID13) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Used(PID11) P6(2MB):Free | Total Usable Free: 52 MB
+|               541 |    11 |        READY |      RUNNING |
+|               973 |    11 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Used(PID13) P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 60 MB
+|               973 |    13 |        READY |      RUNNING |
+|              1181 |    13 |      RUNNING |   TERMINATED |
+   [MEMORY STATUS] partitions: P1(40MB):Free P2(25MB):Free P3(15MB):Free P4(10MB):Free P5(8MB):Free P6(2MB):Free | Total Usable Free: 100 MB
++-----------------------------------------------------------+
