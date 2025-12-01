@@ -52,6 +52,7 @@ struct memory_partition {
 };
 
 struct PCB {
+    //tabbed this over because it was hard to read
     int             PID;
     unsigned int    size;
     unsigned int    arrival_time;
@@ -67,6 +68,7 @@ struct PCB {
     int             priority;
     unsigned int    time_until_io;
     unsigned int    io_completion_time;
+    unsigned int    finish_time;
 };
 
 std::vector<std::string> split_delim(std::string input, std::string delim) {
@@ -83,15 +85,9 @@ std::vector<std::string> split_delim(std::string input, std::string delim) {
 }
 
 std::string print_exec_header() {
-    const int tableWidth = 60;
-    std::stringstream buffer;
-    buffer << "+" << std::setfill('-') << std::setw(tableWidth) << "+" << std::endl;
-    buffer << "|" << std::setfill(' ') << std::setw(18) << "Time of Transition"
-           << " | " << std::setw(5) << "PID"
-           << " | " << std::setw(12) << "Old State"
-           << " | " << std::setw(12) << "New State" << " |" << std::endl;
-    buffer << "+" << std::setfill('-') << std::setw(tableWidth) << "+" << std::endl;
-    return buffer.str();
+    return "+------------------------------------------------------------+\n"
+            "| Time of Transition |  PID  |   Old State  |   New State  |\n"
+            "+------------------------------------------------------------+\n";
 }
 
 std::string print_exec_status(unsigned int current_time, int PID, states old_state, states new_state) {
