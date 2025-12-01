@@ -1,6 +1,6 @@
 /**
  * @file interrupts.cpp
- * @author Sasisekhar Govind
+ * @author nicky fang
  * @brief template main.cpp file for Assignment 3 Part 1 of SYSC4001
  * 
  */
@@ -24,9 +24,9 @@ void EP_RR_Scheduler(std::vector<PCB> &ready_queue) {
 }
 
 std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
-    std::vector<PCB> ready_queue;   //The ready queue of processes
-    std::vector<PCB> wait_queue;    //The wait queue of processes
-    std::vector<PCB> all_processes = list_processes;    //A list to keep track of all the processes. This is similar
+    std::vector<PCB> ready_queue;
+    std::vector<PCB> wait_queue;
+    std::vector<PCB> all_processes = list_processes;
 
     unsigned int current_time = 0;
     PCB running_process;

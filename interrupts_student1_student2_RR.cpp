@@ -1,80 +1,131 @@
 /**
  * @file interrupts.cpp
- * @author Sasisekhar Govind
+ * @author nicky fang
  * @brief template main.cpp file for Assignment 3 Part 1 of SYSC4001
  * 
  */
 
 #include<interrupts_student1_student2.hpp>
 
-void FCFS(std::vector<PCB> &ready_queue) {
-    std::sort( 
-                ready_queue.begin(),
-                ready_queue.end(),
-                []( const PCB &first, const PCB &second ){
-                    return (first.arrival_time > second.arrival_time); 
-                } 
-            );
+const unsigned int TIME_QUANTUM = 100;
+
+void RR_Scheduler(std::vector<PCB> &ready_queue) {
+    // queue because fifo
 }
 
-std::tuple<std::string /* add std::string for bonus mark */ > run_simulation(std::vector<PCB> list_processes) {
-
-    std::vector<PCB> ready_queue;   //The ready queue of processes
-    std::vector<PCB> wait_queue;    //The wait queue of processes
-    std::vector<PCB> job_list;      //A list to keep track of all the processes. This is similar
-
+std::tuple<std::string> run_simulation(std::vector<PCB> list_processes) {
+    std::vector<PCB> ready_queue;
+    std::vector<PCB> wait_queue;
+    std::vector<PCB> all_processes = list_processes;
 
     unsigned int current_time = 0;
-    PCB running;
+    PCB running_process;
+    idle_CPU(running_process);
 
-    //Initialize an empty running process
-    idle_CPU(running);
+    unsigned int quantum_remaining = 0;
 
-    std::string execution_status;
+    std::string execution_log = print_exec_header();
 
-    //make the output table (the header row)
-    execution_status = print_exec_header();
+    while (!all_process_terminated(all_processes)) {
 
-    //Loop while till there are no ready or waiting processes.
-    //This is the main reason I have job_list, you don't have to use it.
-    while(!all_process_terminated(job_list) || job_list.empty()) {
-
-        //Inside this loop, there are three things you must do:
-        // 1) Populate the ready queue with processes as they arrive
-        // 2) Manage the wait queue
-        // 3) Schedule processes from the ready queue
-
-        //Population of ready queue is given to you as an example.
-        //Go through the list of proceeses
-        for(auto &process : list_processes) {
-            if(process.arrival_time == current_time) {//check if the AT = current time
-                //if so, assign memory and put the process into the ready queue
-                assign_memory(process);
-
-                process.state = READY;  //Set the process state to READY
-                ready_queue.push_back(process); //Add the process to the ready queue
-                job_list.push_back(process); //Add it to the list of processes
-
-                execution_status += print_exec_status(current_time, process.PID, NEW, READY);
+        for (auto &p : all_processes) {
+            if (p.state == NEW && p.arrival_time == current_time) {
+                if (assign_memory(p)) {
+                    p.state = READY;
+                    ready_queue.push_back(p);
+                    execution_log += print_exec_status(current_time, p.PID, NEW, READY);
+                    execution_log += print_memory_usage();
+                }
+            }
+            else if (p.state == NEW && p.arrival_time < current_time) {
+                if (assign_memory(p)) {
+                    p.state = READY;
+                    ready_queue.push_back(p);
+                    execution_log += print_exec_status(current_time, p.PID, NEW, READY);
+                    execution_log += print_memory_usage();
+                }
             }
         }
+        auto it = wait_queue.begin();
+        while (it != wait_queue.end()) {
+            if (it->io_completion_time == current_time) {
+                it->state = READY;
+                if (it->io_freq > 0) it->time_until_io = it->io_freq;
 
-        ///////////////////////MANAGE WAIT QUEUE/////////////////////////
-        //This mainly involves keeping track of how long a process must remain in the ready queue
+                for(auto &p : all_processes) {
+                    if(p.PID == it->PID) p = *it;
+                }
 
-        /////////////////////////////////////////////////////////////////
+                ready_queue.push_back(*it);
+                execution_log += print_exec_status(current_time, it->PID, WAITING, READY);
+                it = wait_queue.erase(it);
+            } else {
+                ++it;
+            }
+        }
+        if (running_process.PID == -1 && !ready_queue.empty()) {
+            running_process = ready_queue.front();
+            ready_queue.erase(ready_queue.begin());
 
-        //////////////////////////SCHEDULER//////////////////////////////
-        FCFS(ready_queue); //example of FCFS is shown here
-        /////////////////////////////////////////////////////////////////
+            running_process.state = RUNNING;
+            quantum_remaining = TIME_QUANTUM;
 
+            for(auto &p : all_processes) {
+                if(p.PID == running_process.PID) p = running_process;
+            }
+
+            execution_log += print_exec_status(current_time, running_process.PID, READY, RUNNING);
+        }
+        if (running_process.PID != -1) {
+            running_process.remaining_time--;
+            quantum_remaining--;
+            if(running_process.io_freq > 0) {
+                running_process.time_until_io--;
+            }
+            if (running_process.remaining_time == 0) {
+                running_process.state = TERMINATED;
+                free_memory(running_process);
+
+                for(auto &p : all_processes) {
+                    if(p.PID == running_process.PID) p = running_process;
+                }
+
+                execution_log += print_exec_status(current_time + 1, running_process.PID, RUNNING, TERMINATED);
+                execution_log += print_memory_usage();
+
+                idle_CPU(running_process);
+            }
+            // io
+            else if (running_process.io_freq > 0 && running_process.time_until_io == 0) {
+                running_process.state = WAITING;
+                running_process.io_completion_time = current_time + 1 + running_process.io_duration;
+
+                for(auto &p : all_processes) {
+                    if(p.PID == running_process.PID) p = running_process;
+                }
+
+                wait_queue.push_back(running_process);
+                execution_log += print_exec_status(current_time + 1, running_process.PID, RUNNING, WAITING);
+
+                idle_CPU(running_process);
+            }
+            //expiry
+            else if (quantum_remaining == 0) {
+                running_process.state = READY;
+                for(auto &p : all_processes) {
+                    if(p.PID == running_process.PID) p = running_process;
+                }
+                ready_queue.push_back(running_process);
+                execution_log += print_exec_status(current_time + 1, running_process.PID, RUNNING, READY);
+                idle_CPU(running_process);
+            }
+        }
+        current_time++;
     }
-    
-    //Close the output table
-    execution_status += print_exec_footer();
-
-    return std::make_tuple(execution_status);
+    execution_log += print_exec_footer();
+    return std::make_tuple(execution_log);
 }
+
 
 
 int main(int argc, char** argv) {
