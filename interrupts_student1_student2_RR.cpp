@@ -22,9 +22,7 @@ std::tuple<std::string /* add std::string for bonus mark */ > run_simulation(std
     std::vector<PCB> ready_queue;   //The ready queue of processes
     std::vector<PCB> wait_queue;    //The wait queue of processes
     std::vector<PCB> job_list;      //A list to keep track of all the processes. This is similar
-                                    //to the "Process, Arrival time, Burst time" table that you
-                                    //see in questions. You don't need to use it, I put it here
-                                    //to make the code easier :).
+
 
     unsigned int current_time = 0;
     PCB running;
